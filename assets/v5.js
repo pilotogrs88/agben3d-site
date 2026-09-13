@@ -16,4 +16,38 @@ if(document.getElementById('products')){products.innerHTML=items.map(x=>`<articl
 const slides=[...document.querySelectorAll('.heroSlide')];if(slides.length){const visuals=[['assets/capivara.svg','assets/gato-geometrico.svg','Coleção inicial AGBEN3D','Peças em branco, preto e azul escuro.'],['assets/leitor.svg','assets/suporte-livros.svg','Projetos personalizados','Da referência até uma peça física sob medida.'],['assets/gatos.svg','assets/capivara.svg','Decoração e presentes','Produtos compactos para vários ambientes.']];let i=0;setInterval(()=>{i=(i+1)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===i));const [a,b,t,d]=visuals[i],m=document.getElementById('heroMain'),s=document.getElementById('heroSide');m.parentElement.style.opacity=.25;s.parentElement.style.opacity=.25;setTimeout(()=>{m.src=a;s.src=b;heroBadgeTitle.textContent=t;heroBadgeText.textContent=d;m.parentElement.style.opacity=1;s.parentElement.style.opacity=1},180)},4300)}
 if(document.getElementById('projectForm')){projectForm.onsubmit=e=>{e.preventDefault();const file=arquivo.files[0]?.name||'Nenhum arquivo selecionado';const msg=`Olá AGBEN3D! Quero solicitar um orçamento.%0A%0ANome: ${encodeURIComponent(nome.value)}%0AWhatsApp: ${encodeURIComponent(fone.value)}%0ATipo: ${encodeURIComponent(tipo.value)}%0AQuantidade: ${qtd.value}%0AMedidas: ${encodeURIComponent(med.value||'Não informado')}%0ACor: ${encodeURIComponent(cor.value)}%0AArquivo: ${encodeURIComponent(file)}%0A%0ADescrição:%0A${encodeURIComponent(desc.value||'Não informado')}`;window.open('https://wa.me/5548988506456?text='+msg,'_blank')}}
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-if(document.getElementById('grid')){grid.innerHTML=catalogItems.map(x=>`<article class="productCard"><a href="produto.html?id=${x[0]}"><div class="productPic"><img src="${x[4]}" alt="${x[1]}"></div><div class="productBody"><div class="productCat">${x[2]}</div><h3>${x[1]}</h3><div class="productMeta"><span>até 250 g</span><span>até 15 × 15 cm</span></div><div class="productPrice">R$ ${x[3]}</div><span class="productAction">Ver detalhes</span></div></a></article>`).join('');}
+if(document.getElementById('grid')){
+  const gridEl=document.getElementById('grid');
+  const pager=document.getElementById('catalogPager');
+  const count=document.getElementById('catalogCount');
+  const filters=[...document.querySelectorAll('.filter[data-filter]')];
+  const pageSize=15;
+  let currentPage=1;
+  let activeFilter='Todos';
+
+  const card=x=>`<article class="productCard"><a href="produto.html?id=${x[0]}"><div class="productPic"><img src="${x[4]}" alt="${x[1]}"></div><div class="productBody"><div class="productCat">${x[2]}</div><h3>${x[1]}</h3><div class="productMeta"><span>até 250 g</span><span>até 15 × 15 cm</span></div><div class="productPrice">R$ ${x[3]}</div><span class="productAction">Ver detalhes</span></div></a></article>`;
+
+  function filteredItems(){return activeFilter==='Todos'?catalogItems:catalogItems.filter(x=>x[2]===activeFilter)}
+  function goToPage(page){currentPage=page;renderCatalog();const y=document.querySelector('.catalogTools')?.getBoundingClientRect().top+window.scrollY-90;if(Number.isFinite(y))window.scrollTo({top:y,behavior:'smooth'})}
+  function renderPager(totalPages){
+    if(!pager)return;
+    const prevDisabled=currentPage===1?'disabled':'';
+    const nextDisabled=currentPage===totalPages?'disabled':'';
+    let html=`<button class="pageBtn" ${prevDisabled} data-page="${currentPage-1}" aria-label="Página anterior">← Anterior</button>`;
+    for(let n=1;n<=totalPages;n++)html+=`<button class="pageBtn pageNumber ${n===currentPage?'active':''}" data-page="${n}" aria-label="Página ${n}">${n}</button>`;
+    html+=`<span class="pageSummary">${currentPage}/${totalPages}</span><button class="pageBtn" ${nextDisabled} data-page="${currentPage+1}" aria-label="Próxima página">Próxima →</button>`;
+    pager.innerHTML=html;
+    pager.querySelectorAll('[data-page]:not(:disabled)').forEach(btn=>btn.addEventListener('click',()=>goToPage(Number(btn.dataset.page))));
+  }
+  function renderCatalog(){
+    const data=filteredItems();
+    const totalPages=Math.max(1,Math.ceil(data.length/pageSize));
+    if(currentPage>totalPages)currentPage=totalPages;
+    const start=(currentPage-1)*pageSize;
+    gridEl.innerHTML=data.slice(start,start+pageSize).map(card).join('');
+    if(count)count.textContent=`${data.length} ${data.length===1?'item':'itens'} • até ${pageSize} por página`;
+    renderPager(totalPages);
+  }
+  filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.remove('active'));btn.classList.add('active');activeFilter=btn.dataset.filter;currentPage=1;renderCatalog()}));
+  renderCatalog();
+}
