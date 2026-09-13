@@ -1,0 +1,8 @@
+/* V5.4 — paginação do catálogo */
+.catalogPager{display:flex;align-items:center;justify-content:center;gap:8px;padding:0 0 64px}
+.pageBtn{min-width:38px;height:38px;padding:0 12px;border:1px solid var(--l);border-radius:11px;background:#fff;color:#344054;font-weight:750;font-size:12px;cursor:pointer;transition:.2s}
+.pageBtn:hover:not(:disabled){border-color:#9bb6ea;color:var(--b);transform:translateY(-1px)}
+.pageBtn.active{background:var(--b);border-color:var(--b);color:#fff;box-shadow:0 8px 20px rgba(18,63,145,.18)}
+.pageBtn:disabled{opacity:.38;cursor:not-allowed}
+.pageSummary{display:none;color:#687386;font-size:12px;font-weight:700;min-width:54px;text-align:center}
+@media(max-width:560px){.catalogPager{justify-content:space-between}.catalogPager .pageNumber{display:none}.pageSummary{display:block}.pageBtn{height:40px;min-width:96px}}
