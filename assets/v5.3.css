@@ -1,0 +1,52 @@
+/* V5.3 — catálogo de produtos mais compacto */
+.catalogGrid{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+.catalogCard{
+  border-radius:16px!important;
+}
+.catalogImg{
+  aspect-ratio:1/1!important;
+  background:#f4f7fb!important;
+  padding:10px!important;
+}
+.catalogImg img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+}
+.catalogBody{
+  padding:12px!important;
+}
+.catalogBody h3{
+  font-size:15px!important;
+}
+.catalogBody p{
+  font-size:11px!important;
+  line-height:1.4!important;
+  min-height:46px!important;
+}
+.catalogPrice{
+  font-size:18px!important;
+}
+.catalogMeta{
+  font-size:10px!important;
+}
+.catalogActions .btn{
+  padding:8px!important;
+  font-size:10px!important;
+}
+
+@media(max-width:1180px){
+  .catalogGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:900px){
+  .catalogGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:680px){
+  .catalogGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .catalogImg{padding:8px!important}
+  .catalogBody{padding:10px!important}
+  .catalogBody p{display:none!important}
+}
