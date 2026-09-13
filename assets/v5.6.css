@@ -1,0 +1,72 @@
+/* V5.6 — refinamento profissional, mobile e modal de compra */
+
+/* HOME — compacta os benefícios no celular e evita o grande vazio */
+@media(max-width:680px){
+  .heroCopy{padding-bottom:18px!important}
+  .heroTextStage{height:260px!important}
+  .trustRow{
+    margin-top:14px!important;
+    gap:8px!important;
+  }
+  .trustItem{
+    min-height:58px!important;
+    padding:9px 11px!important;
+    border-radius:14px!important;
+  }
+  .trustIcon{
+    width:28px!important;height:28px!important;flex:0 0 28px!important;
+    border-radius:8px!important;
+  }
+  .trustIcon img{width:16px!important;height:16px!important}
+  .trustItem b{font-size:12px!important}
+  .trustItem span{font-size:10px!important}
+  .heroVisual{margin-top:-12px!important}
+  #produtos .sectionLink{
+    padding:12px 17px!important;
+    font-size:14px!important;
+    border-color:#c5d5f4!important;
+    background:#f5f8ff!important;
+  }
+}
+
+/* COPY/COMPONENTES PROFISSIONAIS */
+.professionalMuted{color:#667085;font-size:12px;line-height:1.55}
+
+/* PRODUTO — modal de compra */
+.purchaseModal{
+  position:fixed;inset:0;z-index:200;
+  display:none;align-items:center;justify-content:center;
+  padding:18px;background:rgba(5,9,16,.72);backdrop-filter:blur(8px)
+}
+.purchaseModal.open{display:flex}
+.purchaseDialog{
+  width:min(520px,100%);background:#fff;border-radius:24px;padding:26px;
+  box-shadow:0 28px 80px rgba(0,0,0,.28);position:relative
+}
+.purchaseClose{
+  position:absolute;right:14px;top:14px;width:34px;height:34px;border:0;border-radius:10px;
+  background:#f2f4f7;color:#344054;font-size:20px;cursor:pointer
+}
+.purchaseIcon{
+  width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+  background:#eef4ff;color:#123f91;font-weight:900;margin-bottom:16px
+}
+.purchaseDialog h2{font-size:27px;letter-spacing:-.03em;margin:0 38px 8px 0}
+.purchaseDialog p{margin:0;color:#667085;line-height:1.6;font-size:14px}
+.purchaseSummary{
+  margin:18px 0;padding:14px;border:1px solid #e4e9f1;border-radius:15px;background:#f8fafc
+}
+.purchaseSummary b{display:block;font-size:13px;margin-bottom:5px}
+.purchaseSummary span{display:block;color:#667085;font-size:12px;line-height:1.5}
+.purchaseCta{width:100%;margin-top:4px}
+
+/* Remove textos com cara de protótipo quando usados em produto */
+.productInfo .presentationNote{display:none}
+
+@media(max-width:620px){
+  .purchaseDialog{padding:22px 18px;border-radius:20px}
+  .purchaseDialog h2{font-size:23px}
+  .productGrid{gap:26px!important}
+  .viewerBox{align-items:flex-start!important;flex-direction:column!important}
+  .viewerBox .btn{width:100%}
+}
