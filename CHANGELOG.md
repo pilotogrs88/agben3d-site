@@ -30,11 +30,23 @@
 - Header escuro e mais presença de azul e preto mantendo branco como base principal.
 - Hero com frases rotativas automáticas.
 - Imagens dos produtos alternando junto com as frases.
-- Catálogo com cards menores e 4 produtos por linha no desktop.
+- Catálogo com cards menores.
 - Melhor equilíbrio visual entre branco, preto e azul.
 - Página de produto preparada para visualização 3D.
 - Área preparada para futuro botão de realidade aumentada (AR) usando a câmera do celular.
 - Estrutura prevista para modelos GLB no navegador/Android e USDZ para iPhone.
+
+## V5 — Correção de estabilidade visual e refinamento de UI
+- Hero reconstruído com altura fixa para impedir a página de subir/descer quando frases e imagens trocam.
+- Produtos em destaque restaurados na página principal.
+- Cards da home reduzidos e mantidos em 5 colunas no desktop.
+- Catálogo “Todos os produtos” reduzido para cards compactos, com 4 colunas no desktop.
+- Ícones informativos diminuídos e padronizados em blocos discretos.
+- Fonte alterada para uma família de interface mais natural, evitando aparência de fonte de código.
+- Área de personalização redesenhada com painel editorial escuro, etapas próprias e formulário mais limpo.
+- Seção “Como funciona” redesenhada como painel contínuo em preto/azul, removendo contornos finos que pareciam quebrados.
+- Mais presença de azul e preto sem abandonar o branco como cor principal.
+- Favicon mantido em todas as páginas principais.
 
 ## Próximos passos sugeridos
 - Substituir imagens ilustrativas pelas fotos oficiais.
